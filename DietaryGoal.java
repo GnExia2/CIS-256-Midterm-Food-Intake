@@ -1,9 +1,20 @@
 public class DietaryGoal {
-    private String goalDescription;
+    private String description;
 
-    public DietaryGoal(String goalDescription) {
-        this.goalDescription = goalDescription;
+    public DietaryGoal(String description) {
+        this.description = description;
     }
 
-    // Getter for goalDescription
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return description;
+    }
 }

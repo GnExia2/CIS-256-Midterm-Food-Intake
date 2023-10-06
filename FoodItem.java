@@ -7,5 +7,24 @@ public class FoodItem {
         this.calories = calories;
     }
 
-    // Getters and setters for name and calories
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getCalories() {
+        return calories;
+    }
+
+    public void setCalories(int calories) {
+        this.calories = calories;
+    }
+
+    @Override
+    public String toString() {
+        return name + " (" + calories + " calories)";
+    }
 }
