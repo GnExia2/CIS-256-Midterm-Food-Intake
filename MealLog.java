@@ -1,7 +1,13 @@
 import java.util.LinkedList;
 
 public class MealLog {
-    private LinkedList<MealEntry> mealEntries;
+    private LinkedList<MealEntry> mealEntries = new LinkedList<>();
 
-    // Methods to add, retrieve, and manage meal entries
+    public void addMealEntry(MealEntry mealEntry) {
+        mealEntries.add(mealEntry);
+    }
+
+    public Iterable<MealEntry> getAllMealEntries() {
+        return mealEntries;
+    }
 }

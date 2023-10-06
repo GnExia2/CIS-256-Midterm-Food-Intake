@@ -5,5 +5,11 @@ public class Notification {
         this.message = message;
     }
 
-    // Getter for message
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
 }

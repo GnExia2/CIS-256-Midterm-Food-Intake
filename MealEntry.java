@@ -11,5 +11,27 @@ public class MealEntry {
         this.timestamp = new Date();
     }
 
-    // Getters for foodItem, quantity, and timestamp
+    public FoodItem getFoodItem() {
+        return foodItem;
+    }
+
+    public void setFoodItem(FoodItem foodItem) {
+        this.foodItem = foodItem;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public Date getTimestamp() {
+        return timestamp;
+    }
+
+    public void setTimestamp(Date timestamp) {
+        this.timestamp = timestamp;
+    }
 }
