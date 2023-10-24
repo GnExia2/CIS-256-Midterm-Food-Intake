@@ -111,23 +111,7 @@ public class FoodIntakeTrackerApp {
     private void receiveNotifications() {
         userInterface.displayNotifications(notificationQueue.getAllNotifications());
     }
-
-    private MealEntry findLoggedMeal(String foodName, int quantity, int calories) {
-        Iterable<MealEntry> meals = mealLog.getAllMealEntries();
     
-        for (MealEntry meal : meals) {
-            if (meal.getFoodItem().getName().equalsIgnoreCase(foodName) &&
-                meal.getQuantity() == quantity &&
-                meal.getCalories() == calories) {
-                return meal; // Return the matching meal entry
-            }
-        }
-    
-        return null; // Return null if the meal is not found
-    }
-
-    
-
     private void viewAllMeals() {
         Iterable<MealEntry> meals = mealLog.getAllMealEntries();
 
