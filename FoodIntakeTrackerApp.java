@@ -13,6 +13,23 @@ public class FoodIntakeTrackerApp {
         dietaryGoalsStack = new DietaryGoalsStack();
         notificationQueue = new NotificationQueue();
         userInterface = new UserInterface(new Scanner(System.in));
+
+        foodDatabase.addFoodItem("Chicken Salad", 350);
+        foodDatabase.addFoodItem("Pasta", 450);
+        foodDatabase.addFoodItem("Pizza", 300);
+        foodDatabase.addFoodItem("Burger", 600);
+        foodDatabase.addFoodItem("Fried Rice", 400);
+        foodDatabase.addFoodItem("Salmon", 250);
+        foodDatabase.addFoodItem("Steak", 700);
+        foodDatabase.addFoodItem("Eggs", 70);
+        foodDatabase.addFoodItem("Yogurt", 120);
+        foodDatabase.addFoodItem("Apple", 80);
+        foodDatabase.addFoodItem("Banana", 105);
+        foodDatabase.addFoodItem("Orange", 62);
+        foodDatabase.addFoodItem("Carrots", 41);
+        foodDatabase.addFoodItem("Broccoli", 55);
+        
+
     }
 
     public void start() {
@@ -51,15 +68,23 @@ public class FoodIntakeTrackerApp {
         userInterface.displayLogMealMessage();
         String foodName = userInterface.getFoodName();
         int quantity = userInterface.getQuantity();
-        int calories = userInterface.getCalories(); // Get the number of calories from the user.
+        int calories = userInterface.getCalories();
     
         if (foodDatabase.containsFoodItem(foodName)) {
             FoodItem foodItem = foodDatabase.getFoodItem(foodName);
-            MealEntry mealEntry = new MealEntry(foodItem, quantity, calories); // Pass calories to MealEntry.
+            MealEntry mealEntry = new MealEntry(foodItem, quantity, calories);
             mealLog.addMealEntry(mealEntry);
             userInterface.displayMealLoggedMessage();
         } else {
+            // Food item not found in the database, so add it and then log the meal
             userInterface.displayFoodNotFoundMessage();
+            // Add the food item to the database
+            foodDatabase.addFoodItem(foodName, calories);
+            // Create a meal entry
+            FoodItem newFoodItem = foodDatabase.getFoodItem(foodName);
+            MealEntry mealEntry = new MealEntry(newFoodItem, quantity, calories);
+            mealLog.addMealEntry(mealEntry);
+            userInterface.displayMealLoggedMessage();
         }
     }
 
@@ -87,9 +112,25 @@ public class FoodIntakeTrackerApp {
         userInterface.displayNotifications(notificationQueue.getAllNotifications());
     }
 
-    private void viewAllMeals() {
+    private MealEntry findLoggedMeal(String foodName, int quantity, int calories) {
         Iterable<MealEntry> meals = mealLog.getAllMealEntries();
     
+        for (MealEntry meal : meals) {
+            if (meal.getFoodItem().getName().equalsIgnoreCase(foodName) &&
+                meal.getQuantity() == quantity &&
+                meal.getCalories() == calories) {
+                return meal; // Return the matching meal entry
+            }
+        }
+    
+        return null; // Return null if the meal is not found
+    }
+
+    
+
+    private void viewAllMeals() {
+        Iterable<MealEntry> meals = mealLog.getAllMealEntries();
+
         System.out.println("All Logged Meals:");
         for (MealEntry meal : meals) {
             System.out.println("Food: " + meal.getFoodItem().getName());
@@ -99,4 +140,5 @@ public class FoodIntakeTrackerApp {
             System.out.println("------------------------");
         }
     }
+
 }
