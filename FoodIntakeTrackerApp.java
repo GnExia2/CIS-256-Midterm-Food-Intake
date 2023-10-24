@@ -37,22 +37,25 @@ public class FoodIntakeTrackerApp {
                     receiveNotifications();
                     break;
                 case 6:
+                    viewAllMeals();
+                    break;
+                case 7:
                     userInterface.displayExitMessage();
                     return;
                 default:
                     userInterface.displayInvalidChoiceMessage();
-            }
-        }
+            }        }
     }
 
     private void logMeal() {
         userInterface.displayLogMealMessage();
         String foodName = userInterface.getFoodName();
         int quantity = userInterface.getQuantity();
-
+        int calories = userInterface.getCalories(); // Get the number of calories from the user.
+    
         if (foodDatabase.containsFoodItem(foodName)) {
             FoodItem foodItem = foodDatabase.getFoodItem(foodName);
-            MealEntry mealEntry = new MealEntry(foodItem, quantity);
+            MealEntry mealEntry = new MealEntry(foodItem, quantity, calories); // Pass calories to MealEntry.
             mealLog.addMealEntry(mealEntry);
             userInterface.displayMealLoggedMessage();
         } else {
@@ -82,5 +85,18 @@ public class FoodIntakeTrackerApp {
 
     private void receiveNotifications() {
         userInterface.displayNotifications(notificationQueue.getAllNotifications());
+    }
+
+    private void viewAllMeals() {
+        Iterable<MealEntry> meals = mealLog.getAllMealEntries();
+    
+        System.out.println("All Logged Meals:");
+        for (MealEntry meal : meals) {
+            System.out.println("Food: " + meal.getFoodItem().getName());
+            System.out.println("Quantity: " + meal.getQuantity());
+            System.out.println("Calories: " + meal.getCalories());
+            System.out.println("Timestamp: " + meal.getTimestamp());
+            System.out.println("------------------------");
+        }
     }
 }

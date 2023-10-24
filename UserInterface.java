@@ -14,7 +14,8 @@ public class UserInterface {
         System.out.println("3. Schedule Notification");
         System.out.println("4. View Dietary Goals");
         System.out.println("5. Receive Notifications");
-        System.out.println("6. Exit");
+        System.out.println("6. View All Meals");
+        System.out.println("7. Exit");
         System.out.print("Enter your choice: ");
     }
 
@@ -31,6 +32,11 @@ public class UserInterface {
 
     public String getFoodName() {
         return scanner.nextLine();
+    }
+
+    public int getCalories() {
+        System.out.print("Enter the number of calories: ");
+        return scanner.nextInt();
     }
 
     public int getQuantity() {
