@@ -2,7 +2,7 @@ import java.util.Date;
 
 public class MealEntry {
     private FoodItem foodItem;
-    private int quantity;
+    private int quantity; 
     private int calories; // New field to store calories.
     private Date timestamp;
 

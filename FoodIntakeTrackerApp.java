@@ -109,7 +109,6 @@ public class FoodIntakeTrackerApp {
     }
 
     
-
     private void receiveNotifications() {
         userInterface.displayNotifications(notificationQueue.getAllNotifications());
     }
