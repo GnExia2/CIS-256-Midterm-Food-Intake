@@ -108,12 +108,27 @@ public class FoodIntakeTrackerApp {
         userInterface.displayDietaryGoals(dietaryGoalsStack.getAllGoals());
     }
 
+    
+
     private void receiveNotifications() {
         userInterface.displayNotifications(notificationQueue.getAllNotifications());
     }
     
     private void viewAllMeals() {
         Iterable<MealEntry> meals = mealLog.getAllMealEntries();
+
+        userInterface.displayAllMealsTitle();
+
+        Iterable<MealEntry> allMeals = mealLog.getAllMealEntries();
+    
+        for (MealEntry mealEntry : allMeals) {
+            userInterface.displayMealEntry(mealEntry);
+        }
+    
+        // Calculate and display the calorie summary
+        int totalCalories = mealLog.calculateTotalCalories();
+        userInterface.displayCalorieSummary(totalCalories);
+    
 
         System.out.println("All Logged Meals:");
         for (MealEntry meal : meals) {

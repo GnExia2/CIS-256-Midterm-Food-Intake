@@ -99,4 +99,21 @@ public class UserInterface {
     public void displayInvalidChoiceMessage() {
         System.out.println("Invalid choice. Please try again.");
     }
+
+    public void displayMealEntry(MealEntry mealEntry) {
+        System.out.println("Meal Entry:");
+        System.out.println("Food: " + mealEntry.getFoodItem().getName());
+        System.out.println("Quantity: " + mealEntry.getQuantity());
+        System.out.println("Calories: " + mealEntry.getFoodItem().getCalories());
+        System.out.println("Timestamp: " + mealEntry.getTimestamp());
+        System.out.println();
+    }
+
+    public void displayCalorieSummary(int totalCalories) {
+        System.out.println("Total Calories Consumed: " + totalCalories + " calories");
+    }
+    
+    public void displayAllMealsTitle() {
+        System.out.println("\nAll Logged Meals:");
+    }
 }
